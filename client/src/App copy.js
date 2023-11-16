@@ -4,8 +4,8 @@ import axios from 'axios';
 function App() {
   const [data, setData] = useState(null);  // State for member data
   const [text, setText] = useState('');  // State for text input
-  const [videoUrl, setVideoUrl] = useState(null);  // State for local video URL
-  const [audioFile, setAudioFile] = useState(null);  // State for received audio file URL
+  const [videoFile, setVideoFile] = useState(null);  // State for video file
+  const [audioFile, setAudioFile] = useState(null);  // State for received audio file
 
   useEffect(() => {
     fetch("/members").then(
@@ -18,17 +18,11 @@ function App() {
     )
   }, []);
 
-  const handleVideoChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setVideoUrl(URL.createObjectURL(file)); // Create and set local URL for the video
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('text', text);
+    formData.append('video', videoFile);
 
     try {
       const response = await axios.post('/upload', formData, {
@@ -38,7 +32,7 @@ function App() {
       });
       setAudioFile(response.data.audioFile);
     } catch (error) {
-      console.error('Error processing text', error);
+      console.error('Error uploading files', error);
     }
   };
 
@@ -53,23 +47,14 @@ function App() {
         <p>Loading...</p>
       )}
 
-      {/* Video upload and display */}
-      <input type="file" accept="video/*" onChange={handleVideoChange} />
-      {videoUrl && (
-        <div>
-          <video src={videoUrl} controls autoPlay style={{ width: '100%', maxHeight: '500px' }} />
-          <button onClick={() => setVideoUrl(null)}>Clear Video</button>
-        </div>
-      )}
-
-      {/* Text input and submit */}
+      {/* File upload form */}
       <form onSubmit={handleSubmit}>
         <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+        <input type="file" onChange={(e) => setVideoFile(e.target.files[0])} />
         <button type="submit">Submit</button>
       </form>
-
-      {/* Audio playback */}
-      {audioFile && <audio src={audioFile} controls autoPlay />}
+      {audioFile && <audio src={audioFile} controls />}
+      <button onClick={() => {/* Function to trigger download */}}>Download Merged Video</button>
     </div>
   );
 }
