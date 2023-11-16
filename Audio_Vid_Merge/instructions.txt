@@ -15,3 +15,7 @@
 - To ensure FFmpeg is installed correctly, run:
   ffmpeg -version
 - This command should display the version of FFmpeg installed on your system.
+
+Debugging/performance issues:
+- Make sure the audio files match the names in the timings.txt
+- Include a number at the end of the audio file name in timings.txt corresponds to the order in which it must be played
