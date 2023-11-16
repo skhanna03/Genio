@@ -1,0 +1,17 @@
+# FFmpeg Installation Instructions for macOS
+
+## Step 1: Install Homebrew
+- Homebrew is a package manager for macOS that makes it easy to install and manage software.
+- Open the Terminal application.
+- Run the following command to install Homebrew:
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+## Step 2: Install FFmpeg using Homebrew
+- Once Homebrew is installed, you can install FFmpeg.
+- In Terminal, run the following command:
+  brew install ffmpeg
+
+## Step 3: Verify the Installation
+- To ensure FFmpeg is installed correctly, run:
+  ffmpeg -version
+- This command should display the version of FFmpeg installed on your system.
