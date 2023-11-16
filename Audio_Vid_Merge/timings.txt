@@ -1,3 +1,2 @@
-audio1.aifc, 0, 3
-audio2.aifc, 4, 7
-audio3.aifc, 8, 11
+hello1.wav, 0, 5.5
+bollywood2.wav, 5.6, 8
