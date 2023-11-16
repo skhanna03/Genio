@@ -17,5 +17,7 @@
 - This command should display the version of FFmpeg installed on your system.
 
 Debugging/performance issues:
-- Make sure the audio files match the names in the timings.txt
+- Make sure the audio files match the names in timings.txt
 - Include a number at the end of the audio file name in timings.txt corresponds to the order in which it must be played
+- Make sure there is only one video file in the video folder
+- Each time you run audio_vid_merge.py, the final audio and final output files will be rewritten
